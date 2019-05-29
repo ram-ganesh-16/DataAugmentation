@@ -1,0 +1,34 @@
+# example of vertical shift image augmentation
+from numpy import expand_dims
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
+from keras.preprocessing.image import ImageDataGenerator
+from matplotlib import pyplot
+
+#connecting the google drive to the plotted images
+from google.colab import drive
+drive.mount('/content/gdrive')
+
+# load the image
+img = load_img('f1.jpg')
+# convert to numpy array
+data = img_to_array(img)
+# expand dimension to one sample
+samples = expand_dims(data, 0)
+# create image data augmentation generator
+datagen = ImageDataGenerator(width_shift_range=[-50,50])
+# prepare iterator
+#connecting the plotted images to the respective drive location the changes are automatically reflected in the gdrive
+it = datagen.flow(samples,save_to_dir=r"gdrive/My Drive/NoteDetection Images/ImagesAfterAugmentation", batch_size=1)
+# generate samples and plot
+for i in range(9):
+	# define subplot
+	pyplot.subplot(330 + 1 + i)
+	# generate batch of images
+	batch = it.next()
+	# convert to unsigned integers for viewing
+	image = batch[0].astype('uint8')
+	# plot raw pixel data
+	pyplot.imshow(image)
+# show the figure
+pyplot.show()
