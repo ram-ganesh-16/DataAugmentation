@@ -1,4 +1,4 @@
-# DataAugmentation
+# Note Detection Using Machine Learning
 This is the repository that is been created to store the images of the Data that I had been Augmented for the 100 and 500 INR. This is 
 the project that I had been working under the organization of National Cash Register with the gudiance of Vinod one of the data analytics
 in the organization.
